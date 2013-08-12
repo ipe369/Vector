@@ -32,6 +32,7 @@ public abstract class Bullet extends Active implements Updates
 					Wall wall = (Wall) Vector.d.updateList.get(i);
 					if (wall.doesCollideWithCircle(new Point(x,y), 8))
 					{
+						wall.hitByBullet(this);
 						onDead(g);
 					}
 				}

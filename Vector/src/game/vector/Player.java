@@ -192,6 +192,15 @@ public class Player extends Active implements Updates, KeyListener
 					return true;
 				}
 			}
+			if (Vector.d.updateList.get(i) instanceof Fighter)
+			{
+				Fighter b = (Fighter) Vector.d.updateList.get(i);
+				if (HelperClass.pythagoras(new Point(b.x,b.y), new Point(x,y)) < b.radius + radius)
+				{
+					Vector.d.updateList.remove(b);
+					return true;
+				}
+			}
 		}
 		return false;
 	}

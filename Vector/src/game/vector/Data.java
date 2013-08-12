@@ -61,7 +61,9 @@ public class Data extends Canvas implements KeyListener
 
 		for (int i = 0; i < updateList.size(); i ++)
 		{
-			updateList.get(i).update(g);
+			//This check is in case the thread restarts the level
+			if (updateList.size() > 0)
+				updateList.get(i).update(g);
 		}
 		viewPort.x = currentLevel.player.x;
 		viewPort.y = currentLevel.player.y;

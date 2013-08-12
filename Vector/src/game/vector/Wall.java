@@ -48,4 +48,8 @@ public class Wall implements Updates
 		else
 			return false;
 	}
+	
+	public void hitByBullet(Bullet bullet)
+	{
+	}
 }
