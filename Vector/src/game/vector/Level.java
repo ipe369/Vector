@@ -7,6 +7,7 @@ public class Level
 {
 	public ArrayList<Wall> walls = new ArrayList<Wall>();
 	public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	public ArrayList<Trigger> triggers = new ArrayList<Trigger>();
 	public Player player;
 	LevelEnd levelEnd;
 	Class<? extends Level> nextLevel;
@@ -33,14 +34,20 @@ public class Level
 		if (player != null)
 		{
 			Vector.d.addKeyListener(player);
+
 			for (int i = 0; i < walls.size(); i ++)
 			{
 				Vector.d.updateList.add(walls.get(i));
+			}
+			for (int i = 0; i < triggers.size(); i ++)
+			{
+				Vector.d.updateList.add(triggers.get(i));
 			}
 			for (int i = 0; i < enemies.size(); i ++)
 			{
 				Vector.d.updateList.add(enemies.get(i));
 			}
+
 			Vector.d.updateList.add(player);
 		}
 		else

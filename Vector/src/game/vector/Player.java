@@ -74,19 +74,36 @@ public class Player extends Active implements Updates, KeyListener
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-		if (e.getKeyChar() == 'a')
+		if (e.getKeyCode() == KeyEvent.VK_E)
+		{
+			for (int i = 0; i < Vector.d.updateList.size(); i ++)
+			{
+				if (Vector.d.updateList.get(i) instanceof Switch)
+				{
+
+					Switch t = (Switch) Vector.d.updateList.get(i);
+					int dis = HelperClass.pythagoras(new Point(x,y), new Point(t.x,t.y));
+					if (dis < radius + t.radius)
+					{
+						t.activate();
+					}
+				}
+			}
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_A)
 		{
 			xSpeed = -speed;
 		}
-		if (e.getKeyChar() == 'w')
+		if (e.getKeyCode() == KeyEvent.VK_W)
 		{
 			ySpeed = -speed;
 		}
-		if (e.getKeyChar() == 'd')
+		if (e.getKeyCode() == KeyEvent.VK_D)
 		{
 			xSpeed = speed;
 		}
-		if (e.getKeyChar() == 's')
+		if (e.getKeyCode() == KeyEvent.VK_S)
 		{
 			ySpeed = speed;
 		}
@@ -116,22 +133,24 @@ public class Player extends Active implements Updates, KeyListener
 	@Override
 	public void keyReleased(KeyEvent e) 
 	{
-		if (e.getKeyChar() == 'a')
+
+		
+		if (e.getKeyCode() == KeyEvent.VK_A)
 		{
 			if (!(xSpeed > 0))
 				xSpeed = 0;
 		}
-		if (e.getKeyChar() == 'w')
+		if (e.getKeyCode() == KeyEvent.VK_W)
 		{
 			if (!(ySpeed > 0))
 				ySpeed = 0;
 		}
-		if (e.getKeyChar() == 'd')
+		if (e.getKeyCode() == KeyEvent.VK_D)
 		{
 			if (!(xSpeed < 0))
 				xSpeed = 0;
 		}
-		if (e.getKeyChar() == 's')
+		if (e.getKeyCode() == KeyEvent.VK_S)
 		{
 			if (!(ySpeed < 0))
 				ySpeed = 0;

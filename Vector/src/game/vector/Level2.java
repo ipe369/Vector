@@ -19,7 +19,7 @@ public class Level2 extends Level
 		walls.add(new Wall(new Point(448,180), new Point(192,180)));
 		walls.add(new Wall(new Point(192,180), new Point(192,64)));
 		walls.add(new Wall(new Point(192,64), new Point(64,64)));
-		enemies.add(new BurstTurret(512, 140));
+		enemies.add(new Fighter(512, 140));
 		levelEnd = new LevelEnd(512,240);
 		
 		nextLevel  = Level2.class;

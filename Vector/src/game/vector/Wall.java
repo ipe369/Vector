@@ -13,6 +13,7 @@ public class Wall implements Updates
 {
 	Point start;
 	Point end;
+	public boolean solid = true;
 	public Color wallColor = Color.CYAN;
 	public Wall(Point _start, Point _end) 
 	{
@@ -42,6 +43,10 @@ public class Wall implements Updates
 	
 	public boolean doesCollideWithCircle(Point circle, int radius)
 	{
+		if (!solid)
+		{
+			return false;
+		}
 		double dist = Line2D.ptSegDist(start.x, start.y, end.x, end.y, circle.x, circle.y);
 		if (radius > dist)
 			return true;
