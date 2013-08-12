@@ -2,9 +2,10 @@ package game.vector;
 
 import java.awt.Point;
 
-public class Level2 extends Level 
+public class Level4 extends Level
 {
-	public Level2() 
+
+	public Level4() 
 	{
 		super(new Point(132,185));
 		walls.add(new Wall(new Point(64,64), new Point(64,300)));
@@ -20,11 +21,13 @@ public class Level2 extends Level
 		walls.add(new Wall(new Point(192,144), new Point(192,64)));
 		walls.add(new Wall(new Point(192,64), new Point(64,64)));
 		walls.add(new DestructableWall(new Point(256,220), new Point(256,144)));
-		messages.add(new TutorialMessage("Use the arrow keys to shoot!",256,197, 85, Vector.d.getGraphics()));
-		messages.add(new TutorialMessage("See if you can figure this one out.",256,197, 240, Vector.d.getGraphics()));
+		enemies.add(new Fighter(320,182));
+		messages.add(new TutorialMessage("Careful, this guy is dangerous!",256,197, 85, Vector.d.getGraphics()));
+		messages.add(new TutorialMessage("He can't see you yet though. Try and shoot him as quickly as possible!",256,197, 240, Vector.d.getGraphics()));
 		levelEnd = new LevelEnd(512,182);
 		
-		nextLevel  = Level3.class;
+		nextLevel  = Level4.class;
 		loadLevel();
 	}
+
 }

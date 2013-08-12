@@ -65,6 +65,14 @@ public class PressurePlate extends Trigger implements Updates
 					return true;
 				}
 			}
+			if (Vector.d.updateList.get(i) instanceof Pushable)
+			{
+				Pushable p = (Pushable) Vector.d.updateList.get(i);
+				if (HelperClass.pythagoras(new Point(x,y), new Point(p.x,p.y)) < radius + p.radius)
+				{
+					return true;
+				}
+			}
 		}
 		return false;
 	}

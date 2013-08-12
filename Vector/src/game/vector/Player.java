@@ -11,7 +11,7 @@ public class Player extends Active implements Updates, KeyListener
 {
 	public int speed = 4;
 	private boolean shooting;
-	private ShootingDirection shootingDirection;
+	private Direction Direction;
 	private int reloadTimer = 0;
 	public boolean dead = false;
 	
@@ -57,7 +57,7 @@ public class Player extends Active implements Updates, KeyListener
 			{
 				int bulletXSpeed = 0;
 				int bulletYSpeed = 0;
-				switch (shootingDirection)
+				switch (Direction)
 				{
 					case LEFT: bulletXSpeed = -12; break;
 					case UP: bulletYSpeed = -12; break;
@@ -111,22 +111,22 @@ public class Player extends Active implements Updates, KeyListener
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			shooting = true;
-			shootingDirection = ShootingDirection.LEFT;
+			Direction = Direction.LEFT;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			shooting = true;
-			shootingDirection = ShootingDirection.UP;
+			Direction = Direction.UP;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			shooting = true;
-			shootingDirection = ShootingDirection.RIGHT;
+			Direction = Direction.RIGHT;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			shooting = true;
-			shootingDirection = ShootingDirection.DOWN;
+			Direction = Direction.DOWN;
 		}
 	}
 
@@ -157,37 +157,37 @@ public class Player extends Active implements Updates, KeyListener
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			if (shootingDirection == ShootingDirection.LEFT)
+			if (Direction == Direction.LEFT)
 			{
 				shooting = false;
-				shootingDirection = ShootingDirection.LEFT;
+				Direction = Direction.LEFT;
 				reloadTimer = 0;
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
-			if (shootingDirection == ShootingDirection.UP)
+			if (Direction == Direction.UP)
 			{
 				shooting = false;
-				shootingDirection = ShootingDirection.UP;
+				Direction = Direction.UP;
 				reloadTimer = 0;
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
-			if (shootingDirection == ShootingDirection.RIGHT)
+			if (Direction == Direction.RIGHT)
 			{
 				shooting = false;
-				shootingDirection = ShootingDirection.RIGHT;
+				Direction = Direction.RIGHT;
 				reloadTimer = 0;
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
-			if (shootingDirection == ShootingDirection.DOWN)
+			if (Direction == Direction.DOWN)
 			{
 				shooting = false;
-				shootingDirection = ShootingDirection.DOWN;
+				Direction = Direction.DOWN;
 				reloadTimer = 0;
 			}
 		}

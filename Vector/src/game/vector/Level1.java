@@ -6,9 +6,8 @@ public class Level1 extends Level
 {
 	public Level1() 
 	{
-		super(new Point(128,140));
-		Door d = new Door(new Point(64,64), new Point(64,300));
-		walls.add(d);
+		super(new Point(132,185));
+		walls.add(new Wall(new Point(64,64), new Point(64,300)));
 		walls.add(new Wall(new Point(64,300), new Point(192,300)));
 		walls.add(new Wall(new Point(192,300), new Point(192,220)));
 		walls.add(new Wall(new Point(192,220), new Point(448,220)));
@@ -20,9 +19,10 @@ public class Level1 extends Level
 		walls.add(new Wall(new Point(448,144), new Point(192,144)));
 		walls.add(new Wall(new Point(192,144), new Point(192,64)));
 		walls.add(new Wall(new Point(192,64), new Point(64,64)));
-		Trigger t = new PressurePlate(128,128);
-		triggers.add(t);
-		d.trigger = t;
+		pushables.add(new Pushable(100,100));
+		triggers.add(new PressurePlate(100,300));
+		messages.add(new TutorialMessage("Hey! Use the WASD keys to move around, and the R and F keys to zoom the camera.",256,197, 85, Vector.d.getGraphics()));
+		messages.add(new TutorialMessage("Reach the green pulsing circle to advance to the next level!",256,197, 240, Vector.d.getGraphics()));
 		levelEnd = new LevelEnd(512,182);
 		
 		nextLevel  = Level2.class;

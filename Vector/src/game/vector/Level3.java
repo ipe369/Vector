@@ -2,11 +2,16 @@ package game.vector;
 
 import java.awt.Point;
 
-public class Level2 extends Level 
+public class Level3 extends Level 
 {
-	public Level2() 
+
+	public Level3() 
 	{
 		super(new Point(132,185));
+		
+		Door d;
+		Trigger t;
+		
 		walls.add(new Wall(new Point(64,64), new Point(64,300)));
 		walls.add(new Wall(new Point(64,300), new Point(192,300)));
 		walls.add(new Wall(new Point(192,300), new Point(192,220)));
@@ -19,12 +24,19 @@ public class Level2 extends Level
 		walls.add(new Wall(new Point(448,144), new Point(192,144)));
 		walls.add(new Wall(new Point(192,144), new Point(192,64)));
 		walls.add(new Wall(new Point(192,64), new Point(64,64)));
-		walls.add(new DestructableWall(new Point(256,220), new Point(256,144)));
-		messages.add(new TutorialMessage("Use the arrow keys to shoot!",256,197, 85, Vector.d.getGraphics()));
-		messages.add(new TutorialMessage("See if you can figure this one out.",256,197, 240, Vector.d.getGraphics()));
+		walls.add(d = new Door(new Point(256,220), new Point(256,144)));
+		
+		triggers.add(t = new Switch(220,182));
+		
+		messages.add(new TutorialMessage("Use E to trigger switches.",256,197, 85, Vector.d.getGraphics()));
+		messages.add(new TutorialMessage("Switches can trigger lots of different things!",256,197, 240, Vector.d.getGraphics()));
+		
 		levelEnd = new LevelEnd(512,182);
 		
-		nextLevel  = Level3.class;
+		d.trigger = t;
+		
+		nextLevel  = Level4.class;
 		loadLevel();
 	}
+
 }

@@ -45,6 +45,22 @@ public abstract class Active implements Updates
 						
 					}
 				}
+				if (Vector.d.updateList.get(i) instanceof Pushable)
+				{
+					Pushable p = (Pushable) Vector.d.updateList.get(i);
+					if (HelperClass.pythagoras(new Point(x + xSpeed, y + ySpeed), new Point(p.x,p.y)) < radius + p.radius)
+					{
+						if (HelperClass.pythagoras(new Point(x, y + ySpeed), new Point(p.x,p.y)) < radius + p.radius)
+						{
+							moveYAllowed = false;
+						}
+						if (HelperClass.pythagoras(new Point(x + xSpeed, y), new Point(p.x,p.y)) < radius + p.radius)
+						{
+							moveXAllowed = false;
+						}
+						p.push(xSpeed, ySpeed);
+					}
+				}
 			}
 			if (moveXAllowed)
 			{

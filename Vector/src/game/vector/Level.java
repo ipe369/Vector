@@ -8,6 +8,8 @@ public class Level
 	public ArrayList<Wall> walls = new ArrayList<Wall>();
 	public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	public ArrayList<Trigger> triggers = new ArrayList<Trigger>();
+	public ArrayList<TutorialMessage> messages = new ArrayList<TutorialMessage>();
+	public ArrayList<Pushable> pushables = new ArrayList<Pushable>();
 	public Player player;
 	LevelEnd levelEnd;
 	Class<? extends Level> nextLevel;
@@ -46,6 +48,14 @@ public class Level
 			for (int i = 0; i < enemies.size(); i ++)
 			{
 				Vector.d.updateList.add(enemies.get(i));
+			}
+			for (int i = 0; i < messages.size(); i ++)
+			{
+				Vector.d.updateList.add(messages.get(i));
+			}
+			for (int i = 0; i < pushables.size(); i ++)
+			{
+				Vector.d.updateList.add(pushables.get(i));
 			}
 
 			Vector.d.updateList.add(player);
