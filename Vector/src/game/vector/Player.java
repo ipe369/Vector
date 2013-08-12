@@ -3,6 +3,7 @@ package game.vector;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -11,7 +12,8 @@ public class Player extends Active implements Updates, KeyListener
 	public int speed = 4;
 	private boolean shooting;
 	private ShootingDirection shootingDirection;
-	private int reloadTimer = 30;
+	private int reloadTimer = 0;
+	public boolean dead = false;
 	
 	public Player(int _x, int _y) 
 	{
@@ -24,6 +26,19 @@ public class Player extends Active implements Updates, KeyListener
 	
 	protected void draw(Graphics2D g) 
 	{
+
+		if (dead)
+		{
+			System.out.println("Player is dead!");
+			new TimedLevelReset(1500);
+			spawnDeathParticles(20);
+			return;
+		}
+		if (checkHitBullet())
+		{
+			dead = true;
+		}
+
 		g.setColor(Color.RED);
 		g.fillOval(x - radius, y - radius, radius*2, radius*2);
 		g.setColor(new Color(255,0,0,80));
@@ -80,25 +95,21 @@ public class Player extends Active implements Updates, KeyListener
 		{
 			shooting = true;
 			shootingDirection = ShootingDirection.LEFT;
-			reloadTimer = 0;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			shooting = true;
 			shootingDirection = ShootingDirection.UP;
-			reloadTimer = 0;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			shooting = true;
 			shootingDirection = ShootingDirection.RIGHT;
-			reloadTimer = 0;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			shooting = true;
 			shootingDirection = ShootingDirection.DOWN;
-			reloadTimer = 0;
 		}
 	}
 
@@ -166,6 +177,34 @@ public class Player extends Active implements Updates, KeyListener
 	@Override
 	public void keyTyped(KeyEvent e) 
 	{
+	}
+	
+	private boolean checkHitBullet()
+	{
+		for (int i = 0; i < Vector.d.updateList.size(); i ++)
+		{
+			if (Vector.d.updateList.get(i) instanceof EnemyBullet)
+			{
+				EnemyBullet b = (EnemyBullet) Vector.d.updateList.get(i);
+				if (HelperClass.pythagoras(new Point(b.x,b.y), new Point(x,y)) < 4 + radius)
+				{
+					Vector.d.updateList.remove(b);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public void spawnDeathParticles(int number)
+	{
+		Vector.d.updateList.remove(this);
+		for (int i = 0; i < number; i ++)
+		{
+			Vector.d.updateList.add(new PlayerParticle(x,y,(int) (Math.random() * 8 - 4), (int) (Math.random() * 8 - 4) * 2, (int) (Math.random() * 10)));
+		}
+		dead = true;
+		return;
 	}
 
 }

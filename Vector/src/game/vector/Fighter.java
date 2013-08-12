@@ -25,7 +25,6 @@ public class Fighter extends Enemy implements Updates
 		}
 		
 		boolean canSee = canSeePlayer();
-		System.out.println(canSee);
 		if (canSee)
 		{
 			degrees = (int) Math.toDegrees(Math.atan2(Vector.d.currentLevel.player.y - y, Vector.d.currentLevel.player.x - x));

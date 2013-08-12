@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 public class Particle extends Active implements Updates 
 {
 	public int lifeTime = 10;
-	private final int maxLifeTime;
+	protected final int maxLifeTime;
 	public Particle(int _x, int _y, int _xSpeed, int _ySpeed, int _lifeTime) 
 	{
 		x = _x;
@@ -15,6 +15,11 @@ public class Particle extends Active implements Updates
 		ySpeed = _ySpeed;
 		lifeTime = _lifeTime;
 		maxLifeTime = lifeTime;
+		while (xSpeed == 0 && ySpeed == 0)
+		{
+			xSpeed = (int) (Math.random()*4)-2;
+			ySpeed = (int) (Math.random()*4)-2;
+		}
 	}
 
 	@Override

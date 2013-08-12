@@ -26,15 +26,19 @@ public class LevelEnd implements Updates
 		g.setColor(new Color(0,255,0,90));
 		g.setStroke(new BasicStroke(2));
 		g.drawOval(x - 16, y - 16, 32, 32);
+		
 		g.setColor(Color.GREEN.darker());
 		g.fillOval(x - 16, y - 16, 32, 32);
-		g.setColor(Color.YELLOW);
-		//just cacheing the size and position of the yellow bit in the Level end portal.
-		float yellowPart = maxFrame/frame;
+		
+		
+		g.setColor(new Color(255,255,0,120));
+		g.setStroke(new BasicStroke(7));
+		g.drawOval(x - (int) frame,y - (int) frame,(int) frame*2,(int) frame*2);
+		g.setColor(new Color(255,255,0));
 		g.setStroke(new BasicStroke(4));
-		g.drawOval(x - (int) yellowPart,y - (int) yellowPart,(int) yellowPart*2,(int) yellowPart*2);
+		g.drawOval(x - (int) frame,y - (int) frame,(int) frame*2,(int) frame*2);
 		frame += 0.2;
-		if (frame >= maxFrame)
+		if (frame >= maxFrame-2)
 		{
 			frame = 1;
 		}

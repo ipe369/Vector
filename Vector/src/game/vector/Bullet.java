@@ -23,13 +23,7 @@ public abstract class Bullet extends Active implements Updates
 			lifeTime --;
 			if (lifeTime <= 0)
 			{
-				Vector.d.updateList.remove(this);
-				for (int i = 0; i < 4; i ++)
-				{
-					Vector.d.updateList.add(new Particle(x,y,(int) (Math.random() * 8 - 4), (int) (Math.random() * 8 - 4) * 2, 40));
-				}
-				dead = true;
-				return;
+				onDead(g);
 			}
 			for (int i = 0; i < Vector.d.updateList.size(); i ++)
 			{
@@ -38,13 +32,7 @@ public abstract class Bullet extends Active implements Updates
 					Wall wall = (Wall) Vector.d.updateList.get(i);
 					if (wall.doesCollideWithCircle(new Point(x,y), 8))
 					{
-						Vector.d.updateList.remove(this);
-						for (int j = 0; j < 4; j ++)
-						{
-							Vector.d.updateList.add(new Particle(x,y,(int) (Math.random() * 8 - 4), (int) (Math.random() * 8 - 4) * 2, 40));
-						}
-						dead = true;
-						return;
+						onDead(g);
 					}
 				}
 			}
@@ -52,6 +40,16 @@ public abstract class Bullet extends Active implements Updates
 		}
 	}
 	
+	public void onDead(Graphics2D g)
+	{
+		Vector.d.updateList.remove(this);
+		for (int i = 0; i < 4; i ++)
+		{
+			Vector.d.updateList.add(new Particle(x,y,(int) (Math.random() * 8 - 4), (int) (Math.random() * 8 - 4) * 2, 40));
+		}
+		dead = true;
+		return;
+	}
 	public abstract void draw2(Graphics2D g);
 
 }
