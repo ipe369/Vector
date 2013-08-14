@@ -1,5 +1,7 @@
 package game.vector;
 
+import Updates;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -27,6 +29,7 @@ public abstract class Active implements Updates
 		{
 			boolean moveXAllowed = true;
 			boolean moveYAllowed = true;
+			
 			for (int i = 0; i < Vector.d.updateList.size(); i ++)
 			{
 				if (Vector.d.updateList.get(i) instanceof Wall)
@@ -52,13 +55,15 @@ public abstract class Active implements Updates
 					{
 						if (HelperClass.pythagoras(new Point(x, y + ySpeed), new Point(p.x,p.y)) < radius + p.radius)
 						{
-							moveYAllowed = false;
+							moveXAllowed = false;
+							p.push(0,ySpeed);
 						}
 						if (HelperClass.pythagoras(new Point(x + xSpeed, y), new Point(p.x,p.y)) < radius + p.radius)
 						{
-							moveXAllowed = false;
+							moveYAllowed = false;
+							p.push(xSpeed,0);
 						}
-						p.push(xSpeed, ySpeed);
+
 					}
 				}
 			}

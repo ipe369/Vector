@@ -1,5 +1,7 @@
 package game.vector;
 
+import Updates;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 

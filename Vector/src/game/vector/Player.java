@@ -1,5 +1,7 @@
 package game.vector;
 
+import Updates;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -26,6 +28,8 @@ public class Player extends Active implements Updates, KeyListener
 	
 	protected void draw(Graphics2D g) 
 	{
+		Vector.d.viewPort.x = x;
+		Vector.d.viewPort.y = y;
 
 		if (dead)
 		{
@@ -74,6 +78,15 @@ public class Player extends Active implements Updates, KeyListener
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
+		if (e.getKeyCode() == KeyEvent.VK_R)
+		{
+			if (!dead)
+			{
+				new TimedLevelReset(1000);
+				spawnDeathParticles(20);
+				dead = true;
+			}
+		}
 		if (e.getKeyCode() == KeyEvent.VK_E)
 		{
 			for (int i = 0; i < Vector.d.updateList.size(); i ++)

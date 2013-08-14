@@ -1,5 +1,7 @@
 package game.vector;
 
+import Updates;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -65,8 +67,6 @@ public class Data extends Canvas implements KeyListener
 			if (updateList.size() > 0)
 				updateList.get(i).update(g);
 		}
-		viewPort.x = currentLevel.player.x;
-		viewPort.y = currentLevel.player.y;
 
 		strat.show();
 		g.dispose();
@@ -75,11 +75,11 @@ public class Data extends Canvas implements KeyListener
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-		if (e.getKeyCode() == KeyEvent.VK_R)
+		if (e.getKeyCode() == KeyEvent.VK_T)
 		{
 			zooming = 0.02f;
 		}
-		else if (e.getKeyCode() == KeyEvent.VK_F)
+		else if (e.getKeyCode() == KeyEvent.VK_G)
 		{
 			zooming = -0.02f;
 		}
@@ -88,8 +88,8 @@ public class Data extends Canvas implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent e) 
 	{
-		if (e.getKeyCode() == KeyEvent.VK_F ||
-			e.getKeyCode() == KeyEvent.VK_R)
+		if (e.getKeyCode() == KeyEvent.VK_G ||
+			e.getKeyCode() == KeyEvent.VK_T)
 		{
 			zooming = 0;
 		}

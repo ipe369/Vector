@@ -1,5 +1,7 @@
 package game.vector;
 
+import Updates;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -59,9 +61,16 @@ public class LevelEnd implements Updates
 	
 	public boolean isCollidingWithPlayer()
 	{
-		if (HelperClass.pythagoras(new Point(x,y), new Point(Vector.d.currentLevel.player.x,Vector.d.currentLevel.player.y)) < 32)
+		if (Vector.d.currentLevel.player != null)
 		{
-			return true;
+			if (HelperClass.pythagoras(new Point(x,y), new Point(Vector.d.currentLevel.player.x,Vector.d.currentLevel.player.y)) < 32)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		else
 		{

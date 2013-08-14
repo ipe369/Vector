@@ -28,6 +28,8 @@ public class TimedLevelReset implements Runnable
 		
 		try 
 		{
+			Vector.d.removeKeyListener(Vector.d.currentLevel.player);
+			Vector.d.currentLevel.player = null;
 			Vector.d.currentLevel = Vector.d.currentLevel.getClass().newInstance();
 		} 
 		catch (InstantiationException | IllegalAccessException e) 

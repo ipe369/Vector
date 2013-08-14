@@ -1,5 +1,7 @@
 package game.vector;
 
+import Updates;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -72,13 +74,11 @@ public class Pushable implements Updates
 		}
 		if (moveXAllowed)
 		{
-			x += _x;
-			Vector.d.viewPort.x = x;
+			x += _x/2;
 		}
 		if (moveYAllowed)
 		{
-			y += _y;
-			Vector.d.viewPort.y = y;
+			y += _y/2;
 		}
 	}
 }

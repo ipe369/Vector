@@ -1,5 +1,6 @@
 package game.vector;
 
+
 import java.awt.Graphics2D;
 
 //This is purely a label for polymorphism.

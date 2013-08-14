@@ -26,7 +26,7 @@ public class Level4 extends Level
 		messages.add(new TutorialMessage("He can't see you yet though. Try and shoot him as quickly as possible!",256,197, 240, Vector.d.getGraphics()));
 		levelEnd = new LevelEnd(512,182);
 		
-		nextLevel  = Level4.class;
+		nextLevel  = Level5.class;
 		loadLevel();
 	}
 
