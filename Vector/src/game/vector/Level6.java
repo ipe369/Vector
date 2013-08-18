@@ -18,9 +18,9 @@ public class Level6 extends Level
 		Door d3a;
 		Door d3b;
 		
-		triggers.add(t1 = new PressurePlate(275, 190));
-		triggers.add(t2 = new PressurePlate(425, 190));
-		triggers.add(t3 = new PressurePlate(575, 190));
+		triggers.add(t1 = new PressurePlate(275, 190,0));
+		triggers.add(t2 = new PressurePlate(425, 190,1));
+		triggers.add(t3 = new PressurePlate(575, 190,2));
 		
 		walls.add(new Wall(new Point(100,170), new Point(100,210)));
 		walls.add(new Wall(new Point(100,170), new Point(250,170)));

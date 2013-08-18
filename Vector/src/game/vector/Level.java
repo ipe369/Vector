@@ -10,13 +10,16 @@ public class Level
 	public ArrayList<Trigger> triggers = new ArrayList<Trigger>();
 	public ArrayList<TutorialMessage> messages = new ArrayList<TutorialMessage>();
 	public ArrayList<Pushable> pushables = new ArrayList<Pushable>();
-	public Player player;
+	public Player player = null;
 	LevelEnd levelEnd;
 	Class<? extends Level> nextLevel;
 	
 	public Level(Point playerPos) 
 	{
 		player = new Player(playerPos.x, playerPos.y);
+	}
+	public Level() 
+	{
 	}
 	
 	public final boolean isLevelEmptyOfEnemies()

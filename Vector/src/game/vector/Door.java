@@ -1,7 +1,5 @@
 package game.vector;
 
-import Updates;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -9,6 +7,7 @@ import java.awt.Point;
 
 public class Door extends Wall implements Updates 
 {
+	int triggerID;
 	Trigger trigger;
 	public boolean open;
 	public Door(Point start, Point end) 

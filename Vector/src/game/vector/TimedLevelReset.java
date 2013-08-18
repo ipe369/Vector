@@ -1,7 +1,5 @@
 package game.vector;
 
-import java.io.IOException;
-
 public class TimedLevelReset implements Runnable
 {
 	public int timeInMillis;

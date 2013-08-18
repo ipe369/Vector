@@ -1,7 +1,5 @@
 package game.vector;
 
-import Updates;
-
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -70,12 +68,14 @@ public abstract class Active implements Updates
 			if (moveXAllowed)
 			{
 				x += xSpeed;
-				Vector.d.viewPort.x = x;
+				if (this instanceof Player)
+					Vector.d.viewPort.x = x;
 			}
 			if (moveYAllowed)
 			{
 				y += ySpeed;
-				Vector.d.viewPort.y = y;
+				if (this instanceof Player)
+					Vector.d.viewPort.y = y;
 			}
 		}
 		draw(g);

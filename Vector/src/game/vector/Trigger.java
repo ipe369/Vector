@@ -1,17 +1,17 @@
 package game.vector;
 
-import Updates;
-
 import java.awt.Graphics2D;
 
 public abstract class Trigger implements Updates 
 {
+	public final int ID;
 	public int radius = 8;
 	public int x;
 	public int y;
 	public boolean on;
-	public Trigger(int _x, int _y)
+	public Trigger(int _x, int _y, int _ID)
 	{
+		ID = _ID;
 		x = _x;
 		y = _y;
 	}

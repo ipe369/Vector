@@ -1,7 +1,5 @@
 package game.vector;
 
-import Updates;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -11,9 +9,9 @@ import java.awt.Point;
 public class PressurePlate extends Trigger implements Updates 
 {
 
-	public PressurePlate(int _x, int _y) 
+	public PressurePlate(int _x, int _y, int _ID) 
 	{
-		super(_x, _y);
+		super(_x, _y, _ID);
 		radius = 16;
 	}
 

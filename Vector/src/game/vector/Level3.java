@@ -26,7 +26,7 @@ public class Level3 extends Level
 		walls.add(new Wall(new Point(192,64), new Point(64,64)));
 		walls.add(d = new Door(new Point(256,220), new Point(256,144)));
 		
-		triggers.add(t = new Switch(220,182));
+		triggers.add(t = new Switch(220,182,0));
 		
 		messages.add(new TutorialMessage("Use E to trigger switches.",256,197, 85, Vector.d.getGraphics()));
 		messages.add(new TutorialMessage("Switches can trigger lots of different things!",256,197, 240, Vector.d.getGraphics()));

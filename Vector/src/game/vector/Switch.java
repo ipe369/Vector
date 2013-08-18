@@ -1,16 +1,14 @@
 package game.vector;
 
-import Updates;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class Switch extends Trigger implements Updates 
 {
-	public Switch(int _x, int _y) 
+	public Switch(int _x, int _y, int _ID) 
 	{
-		super(_x,_y);
+		super(_x,_y,_ID);
 		radius = 8;
 	}
 

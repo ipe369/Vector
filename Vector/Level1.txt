@@ -1,0 +1,13 @@
+Wall/-229,-166/51,-166
+Wall/-229,-166/-229,-110
+Wall/51,-166/51,-53
+Wall/-229,-110/-229,-53
+Wall/-229,-53/51,-53
+Wall/-229,-110/3,-110
+DestructableWall/3,-110/3,-165
+DestructableWall/3,-110/49,-110
+DestructableWall/3,-110/3,-55
+Player/-202,-138
+Fighter/22,-139
+Fighter/24,-76
+LevelEnd/-202,-81

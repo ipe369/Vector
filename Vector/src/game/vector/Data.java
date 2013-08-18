@@ -1,7 +1,5 @@
 package game.vector;
 
-import Updates;
-
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
