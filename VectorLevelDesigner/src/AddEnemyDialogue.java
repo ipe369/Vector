@@ -11,8 +11,9 @@ import javax.swing.JList;
 
 public class AddEnemyDialogue extends JFrame implements ActionListener 
 {
+	private static final long serialVersionUID = 1L;
 	JButton b = new JButton("Create");
-	JList list;
+	JList<String> list;
 	Class<? extends Enemy> selectedEnemy;
 	Point clickPoint;
 	public AddEnemyDialogue(Point _clickPoint) throws HeadlessException 
@@ -20,7 +21,7 @@ public class AddEnemyDialogue extends JFrame implements ActionListener
 		clickPoint = _clickPoint;
 		String[] enemies = new String[]{"Fighter", "Burst Turret"};
 		setSize(100,250);
-		list = new JList(enemies);
+		list = new JList<String>(enemies);
 		getContentPane().add(list);
 		getContentPane().add(b,BorderLayout.SOUTH);
 		b.addActionListener(this);
@@ -30,27 +31,22 @@ public class AddEnemyDialogue extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if (e.getSource() == b)
+		if (e.getSource() == b && list.getSelectedValue() != null)
 		{
-			if (list.getSelectedValue() != null)
-			{
-				String s = (String) list.getSelectedValue();
+			String s = (String) list.getSelectedValue();
 
-				if (s.compareTo("Fighter") == 0)
-				{
-					System.out.println(s);
-					Point pos = VLD.d.calculateNewPointWithZoom(new Point(clickPoint.x,clickPoint.y));
-					VLD.d.updateList.add(new Fighter(pos.x,pos.y));
-					setVisible(false);
-					dispose();
-				}
-				if (s.compareTo("Burst Turret") == 0)
-				{
-					System.out.println(s);
-					VLD.d.updateList.add(new BurstTurret(clickPoint.x,clickPoint.y));
-					setVisible(false);
-					dispose();
-				}
+			if (s.compareTo("Fighter") == 0)
+			{
+				Point pos = VLD.d.calculateNewPointWithZoom(new Point(clickPoint.x,clickPoint.y));
+				VLD.d.updateList.add(new Fighter(pos.x,pos.y));
+				setVisible(false);
+				dispose();
+			}
+			if (s.compareTo("Burst Turret") == 0)
+			{
+				new AddBurstTurretDialogue(clickPoint);
+				setVisible(false);
+				dispose();
 			}
 		}
 	}

@@ -1,3 +1,5 @@
+
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -5,12 +7,19 @@ import java.awt.Graphics2D;
 public class BurstTurret extends Enemy implements Updates 
 {
 	private int reloadTimer = 80;
-	private boolean drawHitDamage;
+	public int offsetTiming = 0;
 	public BurstTurret(int _x, int _y) 
 	{
 		super(_x, _y);
 		radius = 16;
 		health = 6;
+	}
+	public BurstTurret(int _x, int _y, int _offsetTiming) 
+	{
+		super(_x, _y);
+		radius = 16;
+		health = 6;
+		offsetTiming = _offsetTiming;
 	}
 
 	@Override
@@ -18,10 +27,7 @@ public class BurstTurret extends Enemy implements Updates
 	{
 		xSpeed = 0;
 		ySpeed = 0;
-		//glow
-		//1st glow
-		drawSelf(g,drawHitDamage);
-		drawHitDamage = false;
+		drawSelf(g,false);
 	}
 	
 	private void drawSelf(Graphics2D g, boolean drawHit)

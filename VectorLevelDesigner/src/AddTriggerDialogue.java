@@ -11,15 +11,16 @@ import javax.swing.JList;
 
 public class AddTriggerDialogue extends JFrame implements ActionListener 
 {
+	private static final long serialVersionUID = 1L;
 	JButton b = new JButton("Create");
-	JList list;
+	JList<String> list;
 	Point clickPoint;
 	public AddTriggerDialogue(Point _clickPoint) throws HeadlessException 
 	{
 		clickPoint = _clickPoint;
 		String[] triggers = new String[]{"Switch", "Pressure Plate"};
 		setSize(100,250);
-		list = new JList(triggers);
+		list = new JList<String>(triggers);
 		getContentPane().add(list);
 		getContentPane().add(b,BorderLayout.SOUTH);
 		b.addActionListener(this);
@@ -29,27 +30,24 @@ public class AddTriggerDialogue extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if (e.getSource() == b)
+		if (e.getSource() == b && list.getSelectedValue() != null)
 		{
-			if (list.getSelectedValue() != null)
-			{
-				String s = (String) list.getSelectedValue();
+			String s = (String) list.getSelectedValue();
 
-				if (s.compareTo("Switch") == 0)
-				{
-					System.out.println(s);
-					Point pos = VLD.d.calculateNewPointWithZoom(new Point(clickPoint.x,clickPoint.y));
-					VLD.d.updateList.add(new Switch(pos.x,pos.y));
-					setVisible(false);
-					dispose();
-				}
-				if (s.compareTo("Pressure Plate") == 0)
-				{
-					System.out.println(s);
-					VLD.d.updateList.add(new PressurePlate(clickPoint.x,clickPoint.y));
-					setVisible(false);
-					dispose();
-				}
+			if (s.compareTo("Switch") == 0)
+			{
+				System.out.println(s);
+				Point pos = VLD.d.calculateNewPointWithZoom(new Point(clickPoint.x,clickPoint.y));
+				VLD.d.updateList.add(new Switch(pos.x,pos.y));
+				setVisible(false);
+				dispose();
+			}
+			if (s.compareTo("Pressure Plate") == 0)
+			{
+				System.out.println(s);
+				VLD.d.updateList.add(new PressurePlate(clickPoint.x,clickPoint.y));
+				setVisible(false);
+				dispose();
 			}
 		}
 	}

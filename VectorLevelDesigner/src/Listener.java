@@ -12,6 +12,8 @@ import java.awt.event.MouseMotionListener;
 public class Listener implements KeyListener, MouseListener, ActionListener,MouseMotionListener 
 {
 	Data d;
+	private Point lastMousePos;
+	
 	public Listener(Data _d) 
 	{
 		d = _d;
@@ -62,12 +64,44 @@ public class Listener implements KeyListener, MouseListener, ActionListener,Mous
 	@Override
 	public void mouseDragged(MouseEvent e) 
 	{
+		Point actualMousePos = d.calculateNewPointWithZoom(new Point(e.getX() + d.viewPort.x - 320, e.getY() + d.viewPort.y - 240));
+
+		if (d.dragging)
+		{
+			if (d.currentlySelected instanceof Wall)
+			{
+				Wall w = (Wall) d.currentlySelected;
+				w.start.x += actualMousePos.x - lastMousePos.x;
+				w.start.y += actualMousePos.y - lastMousePos.y;
+				w.end.x += actualMousePos.x - lastMousePos.x;
+				w.end.y += actualMousePos.y - lastMousePos.y;
+			}
+			else if (d.currentlySelected instanceof Active)
+			{
+				((Active) d.currentlySelected).x = actualMousePos.x;
+				((Active) d.currentlySelected).y = actualMousePos.y;
+			}
+			else if (d.currentlySelected instanceof Trigger)
+			{
+				((Trigger) d.currentlySelected).x = actualMousePos.x;
+				((Trigger) d.currentlySelected).y = actualMousePos.y;
+			}
+			else if (d.currentlySelected instanceof LevelEnd)
+			{
+				((LevelEnd) d.currentlySelected).x = actualMousePos.x;
+				((LevelEnd) d.currentlySelected).y = actualMousePos.y;
+			}
+			
+		}
+		lastMousePos = actualMousePos;
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) 
 	{
+
 		Point actualMousePos = d.calculateNewPointWithZoom(new Point(e.getX() + d.viewPort.x - 320, e.getY() + d.viewPort.y - 240));
+
 		Point snappedMousePos = null;
 		for (int i = 0; i < d.updateList.size(); i ++)
 		{
@@ -110,6 +144,7 @@ public class Listener implements KeyListener, MouseListener, ActionListener,Mous
 				}
 			}
 		}
+		lastMousePos = actualMousePos;
 	}
 
 	@Override
@@ -130,11 +165,44 @@ public class Listener implements KeyListener, MouseListener, ActionListener,Mous
 	@Override
 	public void mousePressed(MouseEvent e) 
 	{
+		if (d.currentlySelected != null)
+		{
+			Point actualMousePos = d.calculateNewPointWithZoom(new Point(e.getX() + d.viewPort.x - 320, e.getY() + d.viewPort.y - 240));
+			if (d.currentlySelected instanceof Wall)
+			{
+				Wall w = (Wall) d.currentlySelected;
+				//Check if wall is selected
+				if (w.doesCollideWithCircle(d.calculateNewPointWithZoom(new Point(e.getX() + d.viewPort.x - 320, e.getY() + d.viewPort.y - 240)), 8))
+				{
+					d.dragging = true;
+					return;
+				}
+			}
+			else if (d.currentlySelected instanceof Active)
+			{
+				Active a = (Active) d.currentlySelected;
+				if (HelperClass.pythagoras(new Point(a.x,a.y), actualMousePos) <= a.radius)
+				{
+					d.dragging = true;
+					return;
+				}
+			}
+			else if (d.currentlySelected instanceof Trigger)
+			{
+				Trigger a = (Trigger) d.currentlySelected;
+				if (HelperClass.pythagoras(new Point(a.x,a.y), actualMousePos) <= a.radius)
+				{
+					d.dragging = true;
+					return;
+				}
+			}
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) 
 	{
+		d.dragging = false;
 		Point actualMousePos = d.calculateNewPointWithZoom(new Point(e.getX() + d.viewPort.x - 320, e.getY() + d.viewPort.y - 240));
 		if (e.getButton() == 1)
 		{
@@ -250,12 +318,12 @@ public class Listener implements KeyListener, MouseListener, ActionListener,Mous
 									Wall q = (Wall) d.currentlySelected;
 									q.wallColor = Color.WHITE;
 								}
-								else
+								else if (d.currentlySelected instanceof Wall)
 								{
 									Wall q = (Wall) d.currentlySelected;
 									q.wallColor = Color.CYAN;
 								}
-									
+								
 								d.currentlySelected = null;
 							}
 							d.currentlySelected = w;
@@ -263,7 +331,7 @@ public class Listener implements KeyListener, MouseListener, ActionListener,Mous
 							return;
 						}
 					}
-					if (d.updateList.get(i) instanceof Active)
+					else if (d.updateList.get(i) instanceof Active)
 					{
 						Active a = (Active) d.updateList.get(i);
 						if (HelperClass.pythagoras(new Point(a.x,a.y), actualMousePos) <= a.radius)
@@ -280,24 +348,27 @@ public class Listener implements KeyListener, MouseListener, ActionListener,Mous
 									Wall q = (Wall) d.currentlySelected;
 									q.wallColor = Color.WHITE;
 								}
-								else
+								else if (d.currentlySelected instanceof Wall)
 								{
 									Wall q = (Wall) d.currentlySelected;
 									q.wallColor = Color.CYAN;
 								}
-									
+								
 								d.currentlySelected = null;
 							}
 							d.currentlySelected = a;
 							return;
 						}
 					}
-					if (d.updateList.get(i) instanceof Trigger)
+					else if (d.updateList.get(i) instanceof Trigger)
 					{
 						Trigger a = (Trigger) d.updateList.get(i);
 						if (HelperClass.pythagoras(new Point(a.x,a.y), actualMousePos) <= a.radius)
 						{
-							if (d.currentlySelected != null)
+							if (d.currentlySelected != null
+									
+									
+									)
 							{
 								if (d.currentlySelected instanceof DestructableWall)
 								{
@@ -309,11 +380,12 @@ public class Listener implements KeyListener, MouseListener, ActionListener,Mous
 									Wall q = (Wall) d.currentlySelected;
 									q.wallColor = Color.WHITE;
 								}
-								else
+								else if (d.currentlySelected instanceof Wall)
 								{
 									Wall q = (Wall) d.currentlySelected;
 									q.wallColor = Color.CYAN;
 								}
+								
 									
 								d.currentlySelected = null;
 							}
@@ -334,7 +406,7 @@ public class Listener implements KeyListener, MouseListener, ActionListener,Mous
 						Wall q = (Wall) d.currentlySelected;
 						q.wallColor = Color.WHITE;
 					}
-					else
+					else if (d.currentlySelected instanceof Wall)
 					{
 						Wall q = (Wall) d.currentlySelected;
 						q.wallColor = Color.CYAN;
@@ -346,7 +418,7 @@ public class Listener implements KeyListener, MouseListener, ActionListener,Mous
 		}
 		else if (e.getButton() == MouseEvent.BUTTON3)
 		{
-			if (d.currentlySelected instanceof Door)
+			if (d.currentlySelected instanceof Door)// NOPMD
 			{
 				Door w = (Door) d.currentlySelected;
 				for (int i = 0; i < d.updateList.size(); i ++)

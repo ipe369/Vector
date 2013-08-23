@@ -14,6 +14,10 @@ import javax.swing.JMenuItem;
 
 public class Data extends Canvas
 {
+	public boolean dragging = false;
+	
+	private static final long serialVersionUID = 1L;
+
 	public static int currentTriggerID = 0;
 	
 	public int cameraXSpeed;

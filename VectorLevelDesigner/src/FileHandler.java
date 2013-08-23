@@ -46,7 +46,7 @@ public class FileHandler
 					}
 					else if (e instanceof BurstTurret)
 					{
-						w.println("BurstTurret/" + e.x + "," + e.y);
+						w.println("BurstTurret/" + e.x + "," + e.y + "/" + ((BurstTurret) e).offsetTiming);
 					}
 				}
 				else if (d.updateList.get(i) instanceof Trigger)

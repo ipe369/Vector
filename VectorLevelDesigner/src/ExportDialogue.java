@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 public class ExportDialogue extends JFrame implements ActionListener
 {
+	private static final long serialVersionUID = 1L;
 	JTextField name = new JTextField();
 	JButton OK = new JButton("Ok");
 	public ExportDialogue()
@@ -28,12 +29,9 @@ public class ExportDialogue extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		if (e.getSource() == OK)
+		if (e.getSource() == OK && name.getText().compareTo("") != 0)
 		{
-			if (name.getText().compareTo("") != 0)
-			{
-				FileHandler.export(name.getText());
-			}
+			FileHandler.export(name.getText());
 		}
 	}
 }

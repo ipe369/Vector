@@ -1,10 +1,5 @@
-
-
-
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
+
 
 public abstract class Enemy extends Active implements Updates 
 {

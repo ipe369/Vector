@@ -2,7 +2,6 @@
 
 
 import java.awt.Graphics2D;
-import java.awt.Point;
 
 public abstract class Active implements Updates
 {
