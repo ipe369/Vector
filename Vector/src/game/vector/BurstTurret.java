@@ -6,13 +6,21 @@ import java.awt.Graphics2D;
 
 public class BurstTurret extends Enemy implements Updates 
 {
-	private int reloadTimer = 80;
+	private int reloadTimer = 00;
 	private boolean drawHitDamage;
+	private int offsetTiming = 0;
 	public BurstTurret(int _x, int _y) 
 	{
 		super(_x, _y);
 		radius = 16;
 		health = 6;
+	}
+	public BurstTurret(int _x, int _y, int _offsetTiming) 
+	{
+		super(_x, _y);
+		radius = 16;
+		health = 6;
+		offsetTiming = _offsetTiming;
 	}
 
 	@Override
@@ -26,15 +34,21 @@ public class BurstTurret extends Enemy implements Updates
 		drawHitDamage = false;
 		
 		
-		
-		reloadTimer --;
-		if (reloadTimer <= 0)
+		if (offsetTiming <= 0)
 		{
-			reloadTimer = 80;
-			Vector.d.updateList.add(new EnemyBullet(x - radius,y,-7,0));
-			Vector.d.updateList.add(new EnemyBullet(x + radius,y,7,0));
-			Vector.d.updateList.add(new EnemyBullet(x,y - radius,0,-7));
-			Vector.d.updateList.add(new EnemyBullet(x,y + radius,0,7));
+			reloadTimer --;
+			if (reloadTimer <= 0)
+			{
+				reloadTimer = 80;
+				Vector.d.updateList.add(new EnemyBullet(x - radius,y,-7,0));
+				Vector.d.updateList.add(new EnemyBullet(x + radius,y,7,0));
+				Vector.d.updateList.add(new EnemyBullet(x,y - radius,0,-7));
+				Vector.d.updateList.add(new EnemyBullet(x,y + radius,0,7));
+			}
+		}
+		else
+		{
+			offsetTiming --;
 		}
 		
 		if (checkHitBullet())

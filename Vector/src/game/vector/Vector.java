@@ -9,7 +9,7 @@ public class Vector
 	{
 		v = this;
 		d = new Data();
-		d.currentLevel = new Level1();
+
 		start();
 	}
 	public static void main(String[] args) 
@@ -19,6 +19,9 @@ public class Vector
 	
 	public void start()
 	{
+		Vector.d.updateList.clear();
+		d.currentLevel = new Level1();
+
 		while(true)
 		{
 			try

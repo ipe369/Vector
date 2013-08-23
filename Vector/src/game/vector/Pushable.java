@@ -55,18 +55,17 @@ public class Pushable implements Updates
 				Pushable p = (Pushable) Vector.d.updateList.get(i);
 				if (p != this)
 				{
-					if (HelperClass.pythagoras(new Point(x + _x, y + _y), new Point(p.x,p.y)) < radius + p.radius)
+					if (HelperClass.pythagoras(new Point(x + _x, y + _y), new Point(p.x,p.y)) < radius + p.radius &&
+					HelperClass.pythagoras(new Point(x, y + _y), new Point(p.x,p.y)) < radius + p.radius)
 					{
-						if (HelperClass.pythagoras(new Point(x, y + _y), new Point(p.x,p.y)) < radius + p.radius)
-						{
-							moveYAllowed = false;
-						}
-						if (HelperClass.pythagoras(new Point(x + _x, y), new Point(p.x,p.y)) < radius + p.radius)
-						{
-							moveXAllowed = false;
-						}
-						p.push(_x, _y);
+						moveYAllowed = false;
 					}
+					if (HelperClass.pythagoras(new Point(x + _x, y + _y), new Point(p.x,p.y)) < radius + p.radius && 
+					HelperClass.pythagoras(new Point(x + _x, y), new Point(p.x,p.y)) < radius + p.radius)
+					{
+						moveXAllowed = false;
+					}
+						p.push(_x, _y);
 				}
 			}
 		}

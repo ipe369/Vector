@@ -76,14 +76,11 @@ public class Player extends Active implements Updates, KeyListener
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-		if (e.getKeyCode() == KeyEvent.VK_R)
+		if (e.getKeyCode() == KeyEvent.VK_R && !dead)
 		{
-			if (!dead)
-			{
-				new TimedLevelReset(1000);
-				spawnDeathParticles(20);
-				dead = true;
-			}
+			new TimedLevelReset(1000);
+			spawnDeathParticles(20);
+			dead = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_E)
 		{
@@ -122,22 +119,22 @@ public class Player extends Active implements Updates, KeyListener
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			shooting = true;
-			Direction = Direction.LEFT;
+			Direction = game.vector.Direction.LEFT;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			shooting = true;
-			Direction = Direction.UP;
+			Direction = game.vector.Direction.UP;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			shooting = true;
-			Direction = Direction.RIGHT;
+			Direction = game.vector.Direction.RIGHT;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			shooting = true;
-			Direction = Direction.DOWN;
+			Direction = game.vector.Direction.DOWN;
 		}
 	}
 
@@ -146,61 +143,45 @@ public class Player extends Active implements Updates, KeyListener
 	{
 
 		
-		if (e.getKeyCode() == KeyEvent.VK_A)
+		if (e.getKeyCode() == KeyEvent.VK_A && !(xSpeed > 0))
 		{
-			if (!(xSpeed > 0))
-				xSpeed = 0;
+			xSpeed = 0;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_W)
+		if (e.getKeyCode() == KeyEvent.VK_W && !(ySpeed > 0))
 		{
-			if (!(ySpeed > 0))
-				ySpeed = 0;
+			ySpeed = 0;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_D)
+		if (e.getKeyCode() == KeyEvent.VK_D && !(xSpeed < 0))
 		{
-			if (!(xSpeed < 0))
-				xSpeed = 0;
+			xSpeed = 0;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_S)
+		if (e.getKeyCode() == KeyEvent.VK_S && !(ySpeed < 0))
 		{
-			if (!(ySpeed < 0))
-				ySpeed = 0;
+			ySpeed = 0;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_LEFT)
+		if (e.getKeyCode() == KeyEvent.VK_LEFT && Direction == game.vector.Direction.LEFT)
 		{
-			if (Direction == Direction.LEFT)
-			{
-				shooting = false;
-				Direction = Direction.LEFT;
-				reloadTimer = 0;
-			}
+			shooting = false;
+			Direction = game.vector.Direction.LEFT;
+			reloadTimer = 0;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_UP)
+		if (e.getKeyCode() == KeyEvent.VK_UP && Direction == game.vector.Direction.UP)
 		{
-			if (Direction == Direction.UP)
-			{
-				shooting = false;
-				Direction = Direction.UP;
-				reloadTimer = 0;
-			}
+			shooting = false;
+			Direction = game.vector.Direction.UP;
+			reloadTimer = 0;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT && Direction == game.vector.Direction.RIGHT)
 		{
-			if (Direction == Direction.RIGHT)
-			{
-				shooting = false;
-				Direction = Direction.RIGHT;
-				reloadTimer = 0;
-			}
+			shooting = false;
+			Direction = game.vector.Direction.RIGHT;
+			reloadTimer = 0;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN)
-		{
-			if (Direction == Direction.DOWN)
-			{
-				shooting = false;
-				Direction = Direction.DOWN;
-				reloadTimer = 0;
-			}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN && Direction == game.vector.Direction.DOWN)
+		{	
+			shooting = false;
+			Direction = game.vector.Direction.DOWN;
+			reloadTimer = 0;
 		}
 	}
 

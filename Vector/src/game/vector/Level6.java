@@ -66,7 +66,7 @@ public class Level6 extends Level
 		
 		levelEnd = new LevelEnd(827,190);
 		
-		nextLevel  = Level6.class;
+		nextLevel  = Level7.class;
 		loadLevel();
 	}
 

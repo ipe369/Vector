@@ -34,7 +34,6 @@ public abstract class Trigger implements Updates
 	
 	public boolean getState()
 	{
-		System.out.println(on);
 		return on;
 	}
 }

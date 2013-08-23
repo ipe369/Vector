@@ -25,12 +25,9 @@ public abstract class Enemy extends Active implements Updates
 		{
 			if (Vector.d.updateList.get(i) instanceof Wall)
 			{
-				if (Vector.d.updateList.get(i) instanceof Door)
+				if (Vector.d.updateList.get(i) instanceof Door && (boolean) ((Door) Vector.d.updateList.get(i)).open)
 				{
-					if ((boolean) ((Door) Vector.d.updateList.get(i)).open)
-					{
-						continue;
-					}
+					continue;
 				}
 				Wall wall = (Wall) Vector.d.updateList.get(i);
 				if (new Line2D.Float((Point2D) wall.start,(Point2D) wall.end).intersectsLine(new Line2D.Float(x,y,Vector.d.currentLevel.player.x,Vector.d.currentLevel.player.y)))

@@ -13,7 +13,8 @@ import javax.swing.JFrame;
 
 public class Data extends Canvas implements KeyListener
 {
-	public int levelNumber = 1;
+	private static final long serialVersionUID = 1309984163455393415L;
+	public int levelNumber = 7;
 	Level currentLevel;
 	public Point viewPort = new Point(0,0);
 	Player player;

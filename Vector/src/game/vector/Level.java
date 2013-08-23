@@ -29,12 +29,9 @@ public class Level
 
 	public void loadLevel()
 	{
-		if (Vector.d.updateList != null)
+		if (Vector.d.updateList != null && !Vector.d.updateList.isEmpty())
 		{
-			if (!Vector.d.updateList.isEmpty())
-			{
-				Vector.d.updateList.clear();
-			}
+			Vector.d.updateList.clear();
 		}
 		if (player != null)
 		{

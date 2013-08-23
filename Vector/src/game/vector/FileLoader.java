@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class FileLoader 
 {
-	public static void LoadLevel(ArrayList<Updates> l, String path)
+	public static void LoadLevel(ArrayList<Updates> l, String path, Level level)
 	{
 		Trigger[] t = new Trigger[9999];
 		try
@@ -75,7 +75,7 @@ public class FileLoader
 					Player p;
 					l.add(p = new Player(position.x,position.y));
 					Vector.d.addKeyListener(p);
-					Vector.d.currentLevel.player = p;
+					level.player = p;
 					continue;
 				}
 				else if (infos[0].compareTo("LevelEnd") == 0)
@@ -101,9 +101,10 @@ public class FileLoader
 				}
 				else if (infos[0].compareTo("BurstTurret") == 0)
 				{
+					System.out.println("Hey");
 					String[] positionString = infos[1].split(",");
 					Point position = new Point(Integer.parseInt(positionString[0]),Integer.parseInt(positionString[1]));
-					l.add(new BurstTurret(position.x,position.y));
+					l.add(new BurstTurret(position.x,position.y,Integer.parseInt(infos[2])));
 					continue;
 				}
 			}
@@ -115,6 +116,7 @@ public class FileLoader
 					d.trigger = t[d.triggerID];
 				}
 			}
+			r.close();
 		}
 		catch(IOException e)
 		{

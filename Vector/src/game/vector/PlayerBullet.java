@@ -19,7 +19,9 @@ public class PlayerBullet extends Bullet implements Updates
 		g.setColor(Color.yellow);
 		g.fillOval(x - 4, y - 4, 8, 8);
 		g.setColor(Color.yellow.darker());
-		g.fillOval(x - 4, y - 4, 8, 8);
+		g.fillOval(prevPoint.x - 4, prevPoint.y - 4, 8, 8);
+		prevPoint.x = x;
+		prevPoint.y = y;
 		
 	}
 
